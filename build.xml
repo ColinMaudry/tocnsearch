@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." name="nxp.ditaot-plugins" default="test">
+	<property name="ditaot.dir" value="/home/colin/programs/dita-ot-2.1.0"/>
+	<!--<property name="ditaot.dir" value="c:/Users/colin/programs/dita-ot-2.1.0"/>-->
+	<property name="ditaot.plugins.dir" value="${ditaot.dir}/plugins/"/>
+	<property name="pluginId" value="com.maudry.dita.tocnsearch"/>
+	<property name="javax.xml.transform.TransformerFactory" value="net.sf.saxon.TransformerFactoryImpl"/>
+	<condition property="ditaot.executable" value="dita" else="dita.bat">
+		<os family="unix"/>
+	</condition>
+	<path id="dost.class.path">
+		<pathelement location="${ditaot.dir}/lib/dost.jar"/>
+	</path>
+	<target name="clean">
+		<delete verbose="true" dir="${ditaot.plugins.dir}/${pluginId}/"/>
+	</target>
+  <target name="copy" depends="clean">
+  	<copy todir="${ditaot.plugins.dir}">
+  		<fileset dir="." includes="${pluginId}/**/*"/>
+  	</copy>
+  </target>
+	<target name="deploy" depends="copy">
+		<ant dir="${ditaot.dir}" antfile="integrator.xml"/>
+	</target>
+	<target name="test" depends="deploy">
+		<delete dir="${basedir}/test/out"/>
+		<exec dir="${ditaot.dir}" executable="${ditaot.dir}/bin/${ditaot.executable}" searchpath="false">
+			<env key="DITA_DIR" value="${ditaot.dir}"/>
+			<arg line="-format tocnsearch"/>
+			<arg line="-input ${ditaot.dir}/samples/taskbook.ditamap"/>
+			<!--<arg line="-input ${basedir}/com.envivio.dita.pdf/formatting-guide/pdf-formatting-guide.ditamap"/>-->
+			<arg line="-output ${basedir}/test/out/"/>
+			<arg line="-temp ${basedir}/test/out/temp"/>
+			<arg line="-verbose"/>
+			<arg prefix="-Dclean.temp=" value="no"/>
+			<arg prefix="-Ddocument.locale=" value="en-US"/>
+			<arg prefix="-Djavax.xml.transform.TransformerFactory=" value="net.sf.saxon.TransformerFactoryImpl"/>
+		</exec>
+	</target>
+</project>
