@@ -20,6 +20,16 @@
   <xsl:import href="plugin:org.dita.base:xsl/common/dita-utilities.xsl"/>
   <xsl:import href="plugin:org.dita.base:xsl/common/output-message.xsl"/>
   <xsl:variable name="msgprefix">DOTX</xsl:variable>
+  <xsl:variable name="title">
+    <xsl:choose>
+      <xsl:when test="/*/*[contains(@class,' topic/title ')]">
+        <xsl:value-of select="normalize-space(/*/*[contains(@class,' topic/title ')])"/>
+      </xsl:when>
+      <xsl:when test="/*/@title">
+        <xsl:value-of select="normalize-space(/*/@title)"/>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:variable>
 
   <xsl:output method="html"
               encoding="UTF-8"
@@ -69,14 +79,7 @@
     <html class="webhelp">
       <head>
         <title>
-          <xsl:choose>
-            <xsl:when test="/*/*[contains(@class,' topic/title ')]">
-              <xsl:value-of select="normalize-space(/*/*[contains(@class,' topic/title ')])"/>
-            </xsl:when>
-            <xsl:when test="/*/@title">
-              <xsl:value-of select="normalize-space(/*/@title)"/>
-            </xsl:when>
-          </xsl:choose>
+          <xsl:value-of select="$title"/>
         </title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
         <xsl:choose>
@@ -103,15 +106,53 @@
           border:none;
           height:100%;
           }
+          
+          /* Set height 100% for iframes to take all available height */
+          .container-fluid {
+            height:100%;
+          }
+          
         </style>
         <link rel="stylesheet" type="text/css" href="css/custom.css"/>
       </head>
       <body class="webhelp">
-        <header height="50px" width="100%">
-          <!-- Banner content goes here -->
-        </header>
-        <iframe class="col-md-4 col-lg-3" name="tocwin" src="html/tocnav.html"/>
-        <iframe class="col-md-8 col-lg-9" name="contentwin" src="{$firsttopicAsHtml}"/>
+        <nav class="navbar navbar-default navbar-static-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <!-- Add your logo or title here -->
+              <a class="navbar-brand" href="#"><xsl:value-of select="$title"/></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <!--<ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">Nav header</li>
+                    <li><a href="#">Separated link</a></li>
+                    <li><a href="#">One more separated link</a></li>
+                  </ul>
+                </li>
+              </ul>-->
+              <!--<ul class="nav navbar-nav navbar-right">
+                <li><a href="../navbar/">Default</a></li>
+                <li class="active"><a href="./">Static top <span class="sr-only">(current)</span></a></li>
+                <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+              </ul>-->
+            </div>
+            <!--/.nav-collapse -->
+          </div>
+        </nav>
+        <div class="container-fluid">
+          <iframe class="col-md-4 col-lg-3 sidebar" name="tocwin" src="html/tocnav.html"/>
+          <iframe class="col-md-8 col-lg-9" name="contentwin" src="{$firsttopicAsHtml}"/>
+        </div>
       </body>
     </html>
   </xsl:template>
