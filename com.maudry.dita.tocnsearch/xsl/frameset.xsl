@@ -66,7 +66,7 @@
   
 
   <xsl:template match="/">
-    <html>
+    <html class="webhelp">
       <head>
         <title>
           <xsl:choose>
@@ -78,6 +78,7 @@
             </xsl:when>
           </xsl:choose>
         </title>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
         <xsl:choose>
           <xsl:when test="$CSSPATH!=''">
             <link rel="stylesheet" type="text/css" href="concat($CSSPATH,'commonltr.css')"/>
@@ -86,12 +87,16 @@
             <link rel="stylesheet" type="text/css" href="commonltr.css"/>
           </xsl:otherwise>
         </xsl:choose>
+        <link rel="stylesheet" type="text/css" href="css/screen.css"/>
         <link rel="stylesheet" type="text/css" href="css/custom.css"/>
       </head>
-      <frameset cols="30%,*">
-        <frame name="tocwin" src="html/tocnav.html"/>
-        <frame name="contentwin" src="{$firsttopicAsHtml}"/>
-      </frameset>
+      <body class="webhelp">
+        <header height="50px" width="100%">
+          <!-- Banner content goes here -->
+        </header>
+        <iframe class="nav-frame col-md-4 col-lg-3" name="tocwin" src="html/tocnav.html"/>
+        <iframe class="content-frame col-md-8 col-lg-9" name="contentwin" src="{$firsttopicAsHtml}"/>
+      </body>
     </html>
   </xsl:template>
 
