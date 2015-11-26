@@ -29,14 +29,14 @@ function Verifie (ditaSearch_Form) {
     }
 
     
-    expressionInput=parent.frames['searchwin'].document.ditaSearch_Form.textToSearch.value
+    expressionInput=document.ditaSearch_Form.textToSearch.value
 
     if (expressionInput.length < 1) {
 
         // expression invalide (vide)       
         alert(txt_enter_at_least_1_char);
         // reactive la fenetre de search (utile car cadres)
-        parent.frames['searchwin'].document.ditaSearch_Form.textToSearch.focus() ;
+        document.ditaSearch_Form.textToSearch.focus() ;
     }
     else {
 
@@ -44,7 +44,7 @@ function Verifie (ditaSearch_Form) {
         Effectuer_recherche(expressionInput);
 
         // reactive la fenetre de search (utile car cadres)
-       parent.frames['searchwin'].document.ditaSearch_Form.textToSearch.focus() ;
+       document.ditaSearch_Form.textToSearch.focus() ;
     }
 }
 
@@ -237,13 +237,13 @@ function loadTheScripts () {
     var script;
     var head;
      
-    head = parent.frames['searchwin'].document.getElementsByTagName('head').item(0);
+    head = document.getElementsByTagName('head').item(0);
     
     //script = document.createElement('script');
     
     for (el in this.scriptTab) {
         //alert (el+this.scriptTab[el]);
-        script = parent.frames['searchwin'].document.createElement('script');
+        script = document.createElement('script');
         script.src = this.scriptTab[el];
         script.type = 'text/javascript';
         script.defer = false;
