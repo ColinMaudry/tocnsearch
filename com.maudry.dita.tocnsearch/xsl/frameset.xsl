@@ -87,15 +87,33 @@
             <link rel="stylesheet" type="text/css" href="commonltr.css"/>
           </xsl:otherwise>
         </xsl:choose>
-        <link rel="stylesheet" type="text/css" href="css/screen.css"/>
+        <style type="text/css">
+          
+         /* So little code that I don't think it was worth created a new CSS file.*/
+          
+          .webhelp {
+          height:100%;
+          }
+          .webhelp > header {
+          background-color:silver;
+          height:50px;
+          }
+          
+          /* iframes */
+          
+          iframe {
+          border:none;
+          height:100%;
+          }
+        </style>
         <link rel="stylesheet" type="text/css" href="css/custom.css"/>
       </head>
       <body class="webhelp">
         <header height="50px" width="100%">
           <!-- Banner content goes here -->
         </header>
-        <iframe class="nav-frame col-md-4 col-lg-3" name="tocwin" src="html/tocnav.html"/>
-        <iframe class="content-frame col-md-8 col-lg-9" name="contentwin" src="{$firsttopicAsHtml}"/>
+        <iframe class="col-md-4 col-lg-3" name="tocwin" src="html/tocnav.html"/>
+        <iframe class="col-md-8 col-lg-9" name="contentwin" src="{$firsttopicAsHtml}"/>
       </body>
     </html>
   </xsl:template>
