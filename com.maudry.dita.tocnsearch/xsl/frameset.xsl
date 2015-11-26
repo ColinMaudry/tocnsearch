@@ -119,11 +119,12 @@
         <nav class="navbar navbar-default navbar-static-top">
           <div class="container-fluid">
             <div class="navbar-header">
-              <!-- Add your logo or title here -->
               <a class="navbar-brand" href="#"><xsl:value-of select="$title"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-              <!--<ul class="nav navbar-nav">
+              <!-- Inspiration to customize the top menu: -->
+              <!--
+                <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -150,8 +151,8 @@
           </div>
         </nav>
         <div class="container-fluid">
-          <iframe class="col-md-4 col-lg-3 sidebar" name="tocwin" src="html/tocnav.html"/>
-          <iframe class="col-md-8 col-lg-9" name="contentwin" src="{$firsttopicAsHtml}"/>
+          <iframe class="col-sm-4 col-md-3 col-lg-3" name="tocwin" src="html/tocnav.html"/>
+          <iframe class="col-sm-8 col-md-9 col-lg-9" name="contentwin" src="{$firsttopicAsHtml}"/>
         </div>
       </body>
     </html>
