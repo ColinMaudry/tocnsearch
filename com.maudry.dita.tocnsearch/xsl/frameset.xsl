@@ -89,7 +89,7 @@
         </xsl:choose>
         <style type="text/css">
           
-         /* So little code that I don't think it was worth created a new CSS file.*/
+         /* So little code that I don't think it was worth creating a new CSS file.*/
           
           .webhelp {
           height:100%;
@@ -98,8 +98,6 @@
           background-color:#b0d4ff;
           height:50px;
           }
-          
-          /* iframes */
           
           iframe {
           border:none;
