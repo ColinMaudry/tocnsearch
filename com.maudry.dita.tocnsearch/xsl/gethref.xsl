@@ -36,12 +36,12 @@
     <xsl:param name="newhref"/>
 
     <xsl:if test="substring($newhref, string-length($newhref) - string-length('.xml') +1) = '.xml'">
-      <xsl:value-of select="concat(substring-before($newhref, '.xml'), '.html')"/>
+      <xsl:value-of select="concat('../',substring-before($newhref, '.xml'), '.html')"/>
     </xsl:if>
     <xsl:if
       test="substring($newhref, string-length($newhref) - string-length('.dita') +1) =
       '.dita'">
-      <xsl:value-of select="concat(substring-before($newhref, '.dita'), '.html')"/>
+      <xsl:value-of select="concat('../',substring-before($newhref, '.dita'), '.html')"/>
     </xsl:if>
 
   </xsl:template>

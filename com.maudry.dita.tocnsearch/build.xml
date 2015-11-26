@@ -1,0 +1,77 @@
+<!-- 
+ Created by Colin Maudry, based on the plugin tocjs created by Shawn McKenzie.
+ This work is licensed under the terms of the Apache License 2.0 (see LICENCE)
+  *-->
+<project>
+    
+    <target name="dita2tocnsearch" depends="build-init, preprocess, tocjsInit, map2tocnsearch, topic2tocnsearch, tocnsearchDefaultOutput">
+    </target>
+    
+    <target name="tocnsearchInit">
+        <property name="html-version" value="html5"/>
+        <condition property="dita.plugin.com.maudry.dita.tocnsearch.copydefaults" value="true">
+            <not>
+                <isset property="output.file" />
+            </not>
+        </condition>
+        <property name="output.file" value="${output.dir}${file.separator}toctree.js"/>
+        <property name="out.ext" value=".html"/>
+        <property name="customization.dir" value="${dita.plugin.com.maudry.dita.tocnsearch.dir}${file.separator}customization"/>
+    </target>
+    
+    <target name="topic2tocnsearch" if="noMap">
+        <antcall target="dita.map.tocnsearch">
+            <!-- No real support for tocnsearch on a single topic, only for map -->
+        </antcall>
+        <echo>The tocnsearch output type only supports ditamap files as input.</echo>
+    </target>
+    
+    <target name="map2tocnsearch" unless="noMap">
+        <antcall target="dita.map.tocnsearch">
+            <param name="input" value="${dita.temp.dir}${file.separator}${user.input.file}"/>
+        </antcall>
+    </target>
+    
+    <target name="dita.map.tocnsearch" description="generate merged for tocnsearch">
+        <xslt in="${input}" out="${output.file}"
+            style="${dita.plugin.com.maudry.dita.tocnsearch}/xsl/tocjs_shell.xsl">
+            <param name="contentwin" expression="${content.frame}" if="content.frame"/>
+            <param name="htmlext" expression="${out.ext}"/>
+            <xmlcatalog refid="dita.catalog"/>
+        </xslt>
+    </target>
+    
+    <target name="tocnsearchDefaultOutput" 
+        if="dita.plugin.com.maudry.dita.tocnsearch.copydefaults">
+        <!-- Create usable output for people trying tocnsearch for the first time -->
+        <antcall target="tocnsearchDefaultXhtmlOutput"/>
+        <antcall target="tocnsearchDefaultFrameset"/>
+        <!-- Copy default JS and related files -->
+        <copy todir="${output.dir}"><fileset
+            dir="${dita.plugin.com.maudry.dita.tocnsearch}${file.separator}basefiles"><include name="**/*"/></fileset></copy>
+    </target>
+    
+    <target name="tocnsearchDefaultXhtmlOutput" depends="dita.map.xhtml, copy-revflag, xhtml.topics, copy-css">
+        <!-- Preprocess has already completed based on original dependencies;
+           this target continues to XHTML for default output. Seems very 
+           indirect way to create the XHTML, so would like something better,
+           but do not want to add new XHTML processing for people using
+           the original dita2tocnsearch target. -->
+    </target>
+    
+    <target name="tocnsearchDefaultFrameset" if="dita.plugin.com.maudry.dita.tocnsearch.copydefaults">
+        <!-- Create the default frameset itself -->
+        <xslt
+            basedir="${dita.temp.dir}"
+            destdir="${output.dir}"
+            includesfile="${dita.temp.dir}${file.separator}${user.input.file.listfile}"
+            extension="${out.ext}"
+            style="${dita.plugin.com.maudry.dita.tocnsearch}${file.separator}xsl${file.separator}frameset_shell.xsl">
+            <excludesfile name="${dita.temp.dir}${file.separator}${resourceonlyfile}" if="resourceonlyfile"/>
+            <param name="OUTEXT" expression="${out.ext}" if="out.ext"/>
+            <param name="CSSPATH" expression="${CSSPATH}" if="csspath"/>
+            <xmlcatalog refid="dita.catalog"/>
+        </xslt>
+    </target>
+    
+</project>

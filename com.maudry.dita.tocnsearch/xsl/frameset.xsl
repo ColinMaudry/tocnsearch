@@ -86,9 +86,10 @@
             <link rel="stylesheet" type="text/css" href="commonltr.css"/>
           </xsl:otherwise>
         </xsl:choose>
+        <link rel="stylesheet" type="text/css" href="css/custom.css"/>
       </head>
       <frameset cols="30%,*">
-        <frame name="tocwin" src="tocnav.html"/>
+        <frame name="tocwin" src="html/tocnav.html"/>
         <frame name="contentwin" src="{$firsttopicAsHtml}"/>
       </frameset>
     </html>
