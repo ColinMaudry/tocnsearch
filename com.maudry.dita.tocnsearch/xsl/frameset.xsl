@@ -95,7 +95,7 @@
           height:100%;
           }
           .webhelp > header {
-          background-color:silver;
+          background-color:#b0d4ff;
           height:50px;
           }
           
