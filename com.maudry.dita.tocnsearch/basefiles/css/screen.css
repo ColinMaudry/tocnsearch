@@ -16,7 +16,7 @@ html, body { padding: 0px 0px 10px 0px; border: 0; margin: 0; }
 body { font: normal 11px sans-serif; color: #333; line-height: 19px; margin: 0; }
 #containerTop { height:25px; width:144px; }
 #pad { padding: 0px 20px 0px 20px; }
-a {text-decoration: underline; color: #46546C; }
+a {text-decoration: underline; color: #46546C; }  restyled below
 a:hover {text-decoration: underline; color: #4d77c3; }
 h1, h2, h3, h4, h5, h6 { font-family: arial, sans-serif;}
 h2 { font-size:16px; font-weight: bold; margin: 0 0 11px 0; }
@@ -138,30 +138,3 @@ text-shadow: 4px 4px 0px #C3C7CA;
 }
 
 .ylogo { position:absolute;top:5px;left:5px }
-
-/* Colin's code  */
-
-
-.webhelp {
-    height:100%;
-}
-.webhelp > header {
-    background-color:silver;
-    height:50px;
-}
-
-/* iframes */
-
-iframe {
-    border:none;
-    margin:0;
-}
-.nav-frame {
-     border: solid red 1px;   
-     height:100%;     
-}
-
-.content-frame {
-    border: solid blue 1px;
-    height:100%;
-}
