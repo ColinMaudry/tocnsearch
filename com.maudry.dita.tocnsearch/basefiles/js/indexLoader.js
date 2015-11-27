@@ -9,14 +9,14 @@
 if (true) {
     var tab = new Array("htmlFileList","htmlFileInfoList","0","1","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z");
     
-    var headEl = parent.frames['searchwin'].document.getElementsByTagName('head').item(0);
+    var headEl = document.getElementsByTagName('head').item(0);
     for (el in tab) {
-        script = parent.frames['searchwin'].document.createElement('script');
+        script = document.createElement('script');
     	
         var scriptTag = document.getElementById('loadScript' + tab[el]);
         if(scriptTag) headEl.removeChild(scriptTag);
         
-        script.src = "../search/" + tab[el]+ ".js";
+        script.src = "search/" + tab[el]+ ".js";
         script.id = 'loadScript'+tab[el];
         script.type = 'text/javascript';
         script.defer = true;

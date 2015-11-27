@@ -97,6 +97,7 @@ function Effectuer_recherche(expressionInput) {
             if (w[cleanwordsList[t].toString()] == undefined) {
                 txt_wordsnotfound +=  cleanwordsList[t] + " ";
             }     else {
+            console.log('Word: ' + cleanwordsList[t]);
                 tempTab.push(cleanwordsList[t]);
             }
         }
