@@ -128,7 +128,7 @@ function Effectuer_recherche(expressionInput) {
                         tempTitle = tempInfo.substring(pos1+3, pos2);
                         tempShortdesc =  tempInfo.substring(pos2+3, tempInfo.length);
                         
-                        linkString = "<li><a href=\"../"+tempPath+"\">"+tempTitle+"</a>";
+                        linkString = "<li><a href=\""+tempPath+"\">"+tempTitle+"</a>";
                         if ((tempShortdesc!="null")) {
                             linkString += "\n<div class=\"shortdesclink\">"+tempShortdesc+"</div>" ;
                         }
@@ -146,8 +146,8 @@ function Effectuer_recherche(expressionInput) {
         with (parent.frames['contentwin'].document) {
                 writeln("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">\n<html><head>");
                 writeln("<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">");
-                writeln("<link href=\"css/commonltr.css\" type=\"text/css\" rel=\"stylesheet\">" );
-                writeln("<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/search.css\">") ;
+                writeln("<link href=\"commonltr.css\" type=\"text/css\" rel=\"stylesheet\">" );
+                writeln("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/search.css\">") ;
                 writeln("<title>"+txt_filesfound+"</title></head>");
                 writeln("<body onload = \"self.focus()\">");
                 //writeln("<h2>" + txt_search_result + " " + "<i>" + wordsList + "</i>" + "</h2>");
