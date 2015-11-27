@@ -95,23 +95,32 @@
          /* So little code that I don't think it was worth creating a new CSS file.*/
           
           .webhelp {
-          height:100%;
+            height:100%;
           }
           .webhelp > header {
-          background-color:#b0d4ff;
-          height:50px;
+           background-color:#b0d4ff;
+           height:50px;
           }
-          
           iframe {
-          border:none;
-          height:100%;
+            border:none;
+            height:100%;
+            padding-top:8px;
+          }
+          .navbar {
+            margin-bottom:0;
           }
           
           /* Set height 100% for iframes to take all available height */
-          .container-fluid {
+          .webhelp > .container-fluid {
             height:100%;
+            padding-left:0;
           }
           
+          /* Stick the left hand side frame to the left side of screen*/
+          .container-fluid iframe:first-of-type {
+            padding-left:4px;
+            background-color:rgb(254,254,254);
+          }
         </style>
         <link rel="stylesheet" type="text/css" href="css/custom.css"/>
       </head>
@@ -146,6 +155,19 @@
                 <li class="active"><a href="./">Static top <span class="sr-only">(current)</span></a></li>
                 <li><a href="../navbar-fixed-top/">Fixed top</a></li>
               </ul>-->
+              <form onsubmit="Verifie(ditaSearch_Form);return false" name="ditaSearch_Form"
+                class="navbar-form navbar-right">
+                <fieldset class="searchFieldSet">
+                  <div class="input-group">
+                    <input placeholder="Search..." name="textToSearch" type="text"
+                      class="form-control"/>
+                    <span class="input-group-btn">
+                      <button onclick="Verifie(ditaSearch_Form)" type="button"
+                        class="btn btn-default">Go</button>
+                    </span>
+                  </div>
+                </fieldset>
+              </form>
             </div>
             <!--/.nav-collapse -->
           </div>
@@ -154,6 +176,9 @@
           <iframe class="col-sm-4 col-md-3 col-lg-3" name="tocwin" src="html/tocnav.html"/>
           <iframe class="col-sm-8 col-md-9 col-lg-9" name="contentwin" src="{$firsttopicAsHtml}"/>
         </div>
+        <script type="text/javascript" src="js/addition.js"></script>
+        <script type="text/javascript" src="js/indexLoader.js"></script>
+        <script type="text/javascript" src="js/nwSearchFnt.js"></script>
       </body>
     </html>
   </xsl:template>
