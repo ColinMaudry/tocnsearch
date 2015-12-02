@@ -7,6 +7,7 @@
   </target>
   
   <target name="tocnsearchInit">
+    <property name="args.xhtml.toc" value="toc"/>
     <property name="customization.dir" value="${dita.plugin.com.maudry.dita.tocnsearch.dir}${file.separator}customization"/>
     <property name="xml.catalog.files" value="${customization.dir}/catalog.xml;${dita.plugin.com.maudry.dita.tocnsearch.dir}/catalog.xml;${dita.dir}/catalog-dita.xml"/>
     <property name="html-version" value="xhtml"/>
@@ -20,7 +21,7 @@
   </target>
   
   <target name="topic2tocnsearch" if="noMap">
-    <antcall target="dita.map.tocnsearch">
+    <antcall target="dita.map.tocnseairch">
       <!-- No real support for tocnsearch on a single topic, only for map -->
     </antcall>
     <echo>The tocnsearch output type only supports ditamap files as input.</echo>
@@ -52,8 +53,11 @@
     <copy todir="${output.dir}">
       <fileset
       dir="${dita.plugin.com.maudry.dita.tocnsearch.dir}${file.separator}basefiles"><include name="**/*"/></fileset>
-      <fileset
-        dir="${customization.dir}"><include name="**/*"/></fileset>
+      <fileset dir="${customization.dir}">
+        <include name="**/*"/>
+        <exclude name="catalog.xml"/>
+        <exclude name="xsl/"/>
+      </fileset>
     </copy>
   </target>
   
