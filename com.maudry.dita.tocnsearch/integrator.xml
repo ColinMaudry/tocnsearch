@@ -49,8 +49,12 @@
     <antcall target="tocnsearchDefaultXhtmlOutput"/>
     <antcall target="tocnsearchDefaultFrameset"/>
     <!-- Copy default JS and related files -->
-    <copy todir="${output.dir}"><fileset
-      dir="${dita.plugin.com.maudry.dita.tocnsearch.dir}${file.separator}basefiles"><include name="**/*"/></fileset></copy>
+    <copy todir="${output.dir}">
+      <fileset
+      dir="${dita.plugin.com.maudry.dita.tocnsearch.dir}${file.separator}basefiles"><include name="**/*"/></fileset>
+      <fileset
+        dir="${customization.dir}"><include name="**/*"/></fileset>
+    </copy>
   </target>
   
    <target name="tocnsearchDefaultXhtmlOutput" depends="dita.map.xhtml, copy-revflag, xhtml.topics, copy-css">
