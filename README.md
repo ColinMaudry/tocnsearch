@@ -3,7 +3,7 @@
 This DITA Open Toolkit plugin is a fusion between the standard tocjs plugin (by Shawn McKenzie) and the little known HTML Search plugin (by Nadège Quaine).
 It generates an HTML WebHelp with a table of contents in the left page (thanks TocJS) and a full text search field in the top banner (thanks HTML Search). It's easy to customize.
 
-I also plan to modernize it all a bit so that it feels more like 21st century (iframes instead of frames, decent CSS framework, etc.).
+I modernized it all a bit so that it feels more like 21st century (iframes instead of frames, decent CSS framework).
 
 (plugin descriptions by their respective authors)
 
