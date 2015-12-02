@@ -13,68 +13,68 @@ version: 0.10.0
 /* first or middle sibling, no children */
 .ygtvtn {
 	width:16px; height:22px; 
-	background: url(../../img/default/tn.gif) 0 0 no-repeat; 
+	background: url(../../img/default/tn.gif) 0 2px no-repeat; 
 }
 
 /* first or middle sibling, collapsable */
 .ygtvtm {
 	width:16px; height:22px; 
 	cursor:pointer ;
-	background: url(../../img/default/tm.gif) 0 0 no-repeat; 
+	background: url(../../img/default/tm.gif) 0 2px no-repeat; 
 }
 
 /* first or middle sibling, collapsable, hover */
 .ygtvtmh {
 	width:16px; height:22px; 
 	cursor:pointer ;
-	background: url(../../img/default/tmh.gif) 0 0 no-repeat; 
+	background: url(../../img/default/tmh.gif) 0 2px no-repeat; 
 }
 
 /* first or middle sibling, expandable */
 .ygtvtp {
 	width:16px; height:22px; 
 	cursor:pointer ;
-	background: url(../../img/default/tp.gif) 0 0 no-repeat; 
+	background: url(../../img/default/tp.gif) 0 2px no-repeat; 
 }
 
 /* first or middle sibling, expandable, hover */
 .ygtvtph {
 	width:16px; height:22px; 
 	cursor:pointer ;
-	background: url(../../img/default/tph.gif) 0 0 no-repeat; 
+	background: url(../../img/default/tph.gif) 0 2px no-repeat; 
 }
 
 /* last sibling, no children */
 .ygtvln {
 	width:16px; height:22px; 
-	background: url(../../img/default/ln.gif) 0 0 no-repeat; 
+	background: url(../../img/default/ln.gif) 0 2px no-repeat; 
 }
 
 /* Last sibling, collapsable */
 .ygtvlm {
 	width:16px; height:22px; 
 	cursor:pointer ;
-	background: url(../../img/default/lm.gif) 0 0 no-repeat; 
+	background: url(../../img/default/lm.gif) 0 2px no-repeat; 
 }
 
 /* Last sibling, collapsable, hover */
 .ygtvlmh {
 	width:16px; height:22px; 
 	cursor:pointer ;
-	background: url(../../img/default/lmh.gif) 0 0 no-repeat; 
+	background: url(../../img/default/lmh.gif) 0 2px no-repeat; 
 }
 
 /* Last sibling, expandable */
 .ygtvlp { 
 	width:16px; height:22px; 
 	cursor:pointer ;
-	background: url(../../img/default/lp.gif) 0 0 no-repeat; 
+	background: url(../../img/default/lp.gif) 0 2px no-repeat; 
 }
 
 /* Last sibling, expandable, hover */
 .ygtvlph { 
 	width:16px; height:22px; cursor:pointer ;
-	background: url(../../img/default/lph.gif) 0 0 no-repeat; 
+	background: url(../../img/default/lph.gif) 0 2px no-repeat; 
 }
 
 /* Loading icon */
@@ -87,7 +87,7 @@ version: 0.10.0
  * of the node */
 .ygtvdepthcell { 
 	width:16px; height:22px; 
-	background: url(../../img/default/vline.gif) 0 0 no-repeat; 
+	background: url(../../img/default/vline.gif) 0 2px no-repeat; 
 }
 
 .ygtvblankdepthcell { width:16px; height:22px; }

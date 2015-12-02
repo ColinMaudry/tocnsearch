@@ -3,13 +3,14 @@
  This work is licensed under the terms of the Apache License 2.0 (see LICENCE)
   *-->
 <project>
-  <target name="dita2tocnsearch" depends="build-init, preprocess, tocnsearchInit, map2tocnsearch, topic2tocnsearch, tocnsearchDefaultOutput">
+  <target name="dita2tocnsearch" depends="build-init, preprocess, tocnsearchInit, map2tocnsearch, topic2tocnsearch, tocnsearchDefaultOutput, htmlsearch-indexer">
   </target>
   
   <target name="tocnsearchInit">
+    <property name="args.xhtml.toc" value="toc"/>
     <property name="customization.dir" value="${dita.plugin.com.maudry.dita.tocnsearch.dir}${file.separator}customization"/>
     <property name="xml.catalog.files" value="${customization.dir}/catalog.xml;${dita.plugin.com.maudry.dita.tocnsearch.dir}/catalog.xml;${dita.dir}/catalog-dita.xml"/>
-    <property name="html-version" value="html5"/>
+    <property name="html-version" value="xhtml"/>
     <condition property="dita.plugin.com.maudry.dita.tocnsearch.copydefaults" value="true">
       <not>
         <isset property="output.file" />
@@ -20,7 +21,7 @@
   </target>
   
   <target name="topic2tocnsearch" if="noMap">
-    <antcall target="dita.map.tocnsearch">
+    <antcall target="dita.map.tocnseairch">
       <!-- No real support for tocnsearch on a single topic, only for map -->
     </antcall>
     <echo>The tocnsearch output type only supports ditamap files as input.</echo>
@@ -49,11 +50,18 @@
     <antcall target="tocnsearchDefaultXhtmlOutput"/>
     <antcall target="tocnsearchDefaultFrameset"/>
     <!-- Copy default JS and related files -->
-    <copy todir="${output.dir}"><fileset
-      dir="${dita.plugin.com.maudry.dita.tocnsearch.dir}${file.separator}basefiles"><include name="**/*"/></fileset></copy>
+    <copy todir="${output.dir}">
+      <fileset
+      dir="${dita.plugin.com.maudry.dita.tocnsearch.dir}${file.separator}basefiles"><include name="**/*"/></fileset>
+      <fileset dir="${customization.dir}">
+        <include name="**/*"/>
+        <exclude name="catalog.xml"/>
+        <exclude name="xsl/"/>
+      </fileset>
+    </copy>
   </target>
   
-  <target name="tocnsearchDefaultXhtmlOutput" depends="dita.map.xhtml, copy-revflag, xhtml.topics, copy-css">
+   <target name="tocnsearchDefaultXhtmlOutput" depends="dita.map.xhtml, copy-revflag, xhtml.topics, copy-css">
     <!-- Preprocess has already completed based on original dependencies;
            this target continues to XHTML for default output. Seems very 
            indirect way to create the XHTML, so would like something better,
@@ -76,5 +84,32 @@
         <catalogpath path="${xml.catalog.files}"/>
       </xmlcatalog>      
     </xslt>
+  </target>
+  
+  <target name="htmlsearchCopyFiles">
+    <copy todir="${output.dir}${file.separator}images">
+      <fileset
+        dir="${dita.plugin.com.maudry.dita.tocnsearch.dir}${file.separator}images">
+        <include name="*.*"/>
+      </fileset>
+    </copy>
+    <copy todir="${output.dir}">
+      <fileset
+        dir="${dita.dir}${file.separator}demo${file.separator}htmlsearch${file.separator}basefiles"
+      > </fileset>
+    </copy>
+  </target>
+  
+  <target name="htmlsearch-indexer">
+    <path id="nw-cms.jar.path">
+      <pathelement
+        location="${dita.plugin.com.maudry.dita.tocnsearch.dir}${file.separator}lib${file.separator}nw-cms.jar"
+      />
+    </path>
+    <taskdef name="indexertask" classname="com.nexwave.nquindexer.IndexerTask">
+      <classpath refid="nw-cms.jar.path"/>
+    </taskdef>
+    <echo>Directory to parse for indexing: ${output.dir}</echo>
+    <indexertask htmldir="${output.dir}"/>
   </target>
 </project>
