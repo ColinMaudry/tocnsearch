@@ -1,4 +1,4 @@
-#TOCnSearch 0.9.0
+#TOCnSearch 0.9.1
 
 This DITA Open Toolkit plugin is a fusion between the standard tocjs plugin (by Shawn McKenzie) and the little known HTML Search plugin (by Nadège Quaine).
 It generates an HTML WebHelp with a table of contents in the left page (thanks TocJS) and a full text search field in the top banner (thanks HTML Search). It's easy to customize.
@@ -23,6 +23,10 @@ Copyright (c) 2008 N. Quaine - NexWave Solutions All Rights Reserved.
 The search plugin generates javascript index files from the html files produced by the web transform and a frameset with a simple search feature.
 
 ## Change log
+
+#### 0.9.1
+
+- Added support for relative path as "output.dir", not only absolute (used to break indexing)
 
 #### 0.9.0
 

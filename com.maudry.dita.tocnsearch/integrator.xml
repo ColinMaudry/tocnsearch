@@ -7,6 +7,7 @@
   </target>
   
   <target name="tocnsearchInit">
+  
     <property name="args.xhtml.toc" value="toc"/>
     <property name="customization.dir" value="${dita.plugin.com.maudry.dita.tocnsearch.dir}${file.separator}customization"/>
     <property name="xml.catalog.files" value="${customization.dir}/catalog.xml;${dita.plugin.com.maudry.dita.tocnsearch.dir}/catalog.xml;${dita.dir}/catalog-dita.xml"/>
@@ -52,7 +53,7 @@
     <!-- Copy default JS and related files -->
     <copy todir="${output.dir}">
       <fileset
-      dir="${dita.plugin.com.maudry.dita.tocnsearch.dir}${file.separator}basefiles"><include name="**/*"/></fileset>
+        dir="${dita.plugin.com.maudry.dita.tocnsearch.dir}${file.separator}basefiles"><include name="**/*"/></fileset>
       <fileset dir="${customization.dir}">
         <include name="**/*"/>
         <exclude name="catalog.xml"/>
@@ -61,7 +62,7 @@
     </copy>
   </target>
   
-   <target name="tocnsearchDefaultXhtmlOutput" depends="dita.map.xhtml, copy-revflag, xhtml.topics, copy-css">
+  <target name="tocnsearchDefaultXhtmlOutput" depends="dita.map.xhtml, copy-revflag, xhtml.topics, copy-css">
     <!-- Preprocess has already completed based on original dependencies;
            this target continues to XHTML for default output. Seems very 
            indirect way to create the XHTML, so would like something better,
@@ -96,11 +97,14 @@
     <copy todir="${output.dir}">
       <fileset
         dir="${dita.dir}${file.separator}demo${file.separator}htmlsearch${file.separator}basefiles"
-      > </fileset>
+        > </fileset>
     </copy>
   </target>
   
   <target name="htmlsearch-indexer">
+    <condition property="indexer.output.dir" value="${basedir}${file.separator}${output.dir}" else="${output.dir}">
+      <available type="dir" file="${basedir}${file.separator}${output.dir}"></available>
+    </condition>
     <path id="nw-cms.jar.path">
       <pathelement
         location="${dita.plugin.com.maudry.dita.tocnsearch.dir}${file.separator}lib${file.separator}nw-cms.jar"
@@ -109,7 +113,8 @@
     <taskdef name="indexertask" classname="com.nexwave.nquindexer.IndexerTask">
       <classpath refid="nw-cms.jar.path"/>
     </taskdef>
-    <echo>Directory to parse for indexing: ${output.dir}</echo>
-    <indexertask htmldir="${output.dir}"/>
+    <echo>Directory to parse for indexing: ${indexer.output.dir}</echo>
+    <echo>Tested: ${basedir}${file.separator}${output.dir}</echo>
+    <indexertask htmldir="${indexer.output.dir}"/>
   </target>
 </project>
