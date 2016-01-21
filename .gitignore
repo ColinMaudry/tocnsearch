@@ -1,2 +1,7 @@
 test
-*build.properties
+notes.txt
+.bak
+**/Thumbs.db
+*.zip
+*.autosave*
+test-build.properties
