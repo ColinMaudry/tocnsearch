@@ -110,10 +110,12 @@
             margin-bottom:0;
           }
           
-          /* Set height 100% for iframes to take all available height */
           .webhelp > .container-fluid {
-            height:100%;
             padding-left:0;
+            padding-right:0;
+          
+            /* Adapt screen height */
+            height:calc(100% - 51px);
           }
           
           /* Stick the left hand side frame to the left side of screen*/
