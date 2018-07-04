@@ -1,4 +1,0 @@
-<plugin id="com.maudry.dita.tocnsearch">
-  <transtype name="tocnsearch" extends="5html" desc="TocJS + HTML Search"/>
-  <feature extension="dita.conductor.target" file="integrator.xml"/>
-</plugin>

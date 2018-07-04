@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <uri name="custom:xsl/frameset.xsl" uri="customization/xsl/frameset.xsl"/>
-    <uri name="custom:xsl/tocjs.xsl" uri="customization/xsl/tocjs.xsl"/>
-</catalog>
